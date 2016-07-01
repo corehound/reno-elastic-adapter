@@ -16,10 +16,10 @@ import org.slf4j.LoggerFactory;
 
 public class ElasticAdapterFactory extends AdapterFactory{
 	
-	private Logger logger = LoggerFactory.getLogger(ElasticAdapterFactory.class);
+	private static Logger logger = LoggerFactory.getLogger(ElasticAdapterFactory.class);
 	
-	private Client client;
-	private int connectionAttempts = 0; 
+	private static Client client;
+	private static int connectionAttempts = 0; 
 
 	@Override
 	protected SearchService doGetSearchService() {
@@ -36,7 +36,7 @@ public class ElasticAdapterFactory extends AdapterFactory{
 		return new ElasticAdminService();
 	}
 	
-	Client getClient(){
+	static Client getClient(){
 		if(client == null){
 			if(connectionAttempts < 5){
 				try {
