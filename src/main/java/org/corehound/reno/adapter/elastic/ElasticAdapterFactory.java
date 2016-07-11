@@ -14,7 +14,7 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ElasticAdapterFactory extends AdapterFactory{
+public class ElasticAdapterFactory extends AdapterFactory {
 	
 	private static Logger logger = LoggerFactory.getLogger(ElasticAdapterFactory.class);
 	
