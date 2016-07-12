@@ -29,7 +29,7 @@ public class ElasticAdminService implements AdminService {
 
 		} catch (Exception e) {
 			LOG.error("Index creating failed - {}. Name: {}", e.getMessage(), name, e);
-			throw new AdminException("Index creating failed - " +  e.getMessage() + ". Name: " + name, e);
+			throw new AdminException("Index creating failed - " + e.getMessage() + ". Name: " + name, e);
 		}
 
 		LOG.info("Index created. Name: {}", name);
@@ -55,58 +55,59 @@ public class ElasticAdminService implements AdminService {
 	}
 
 	public String getIndexDefinition(String name) {
-		
+
 		LOG.debug("Index definition getting requested.");
 
 		AdminClient client = ElasticAdapterFactory.getClient().admin();
 
 		String definition = null;
-		
+
 		try {
-			
-			//client.indices().getSettings(null).get
+
+			// client.indices().getSettings(null).get
 
 			LOG.debug("Index definition getting finished. Value: {}", definition);
-			
+
 		} catch (Exception e) {
 			LOG.error("Index definition getting failed - {}", e.getMessage(), e);
-			//TODO throw exception
-			//throw new AdminException("Index deleting failed - " + e.getMessage() + ". Name: " + name, e);
+			// TODO throw exception
+			// throw new AdminException("Index deleting failed - " +
+			// e.getMessage() + ". Name: " + name, e);
 		}
 
 		return definition;
 	}
 
-	
 	public List<String> getIndexNames() {
-		
+
 		LOG.debug("Index list getting requested.");
 
 		AdminClient client = ElasticAdapterFactory.getClient().admin();
 
 		String[] indexArray = new String[0];
-		
+
 		try {
-			indexArray = client.cluster().prepareState().execute().actionGet().getState()
-		    .getMetaData().concreteAllIndices();
+			indexArray = client.cluster().prepareState().execute().actionGet().getState().getMetaData()
+					.concreteAllIndices();
 
 			LOG.debug("Index list getting finished. Values: {}", Arrays.toString(indexArray));
-			
+
 		} catch (Exception e) {
 			LOG.error("Index list getting failed - {}", e.getMessage(), e);
-			//TODO throw exception
-			//throw new AdminException("Index deleting failed - " + e.getMessage() + ". Name: " + name, e);
+			// TODO throw exception
+			// throw new AdminException("Index deleting failed - " +
+			// e.getMessage() + ". Name: " + name, e);
 		}
 
 		return new ArrayList<String>(Arrays.asList(indexArray));
 	}
 
-	public void updateSynonyms(String indexName, String synonyms) throws AdminException {
+	public void updateSynonyms(String indexName, List<List<String>> synonyms) throws AdminException {
 		// TODO Auto-generated method stub
 
 	}
 
-	public String getSynonyms(String indexName) {
+	public List<List<String>> getSynonyms(String indexName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -124,7 +125,5 @@ public class ElasticAdminService implements AdminService {
 
 		return exists;
 	}
-	
-
 
 }
