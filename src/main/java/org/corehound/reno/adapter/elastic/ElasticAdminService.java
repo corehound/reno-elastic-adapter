@@ -126,4 +126,14 @@ public class ElasticAdminService implements AdminService {
 		return exists;
 	}
 
+	public void updateKeywords(String indexName, List<String> keywords) throws AdminException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<String> getKeywords(String indexName) throws AdminException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
